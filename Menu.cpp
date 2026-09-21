@@ -40,4 +40,3 @@ int Menu::obtenerRespuesta() {
 
 	return opcion;
 }
-

@@ -145,12 +145,16 @@
     <ClCompile Include="ExamenManager.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuGestorExamenes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Examen.h" />
     <ClInclude Include="ExamenArchivo.h" />
     <ClInclude Include="ExamenManager.h" />
     <ClInclude Include="Fecha.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuGestorExamenes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,5 +15,4 @@ public:
 	void setItem(int indice, std::string texto);
 	void dibujarMenu();
 	int obtenerRespuesta();
-
 };
