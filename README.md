@@ -1,6 +1,6 @@
 # Gestor de Exámenes
 
-Aplicación de consola desarrollada en **C++** para registrar exámenes de alumnos, almacenarlos en un archivo binario y consultar la mejor nota obtenida en un examen parcial.
+Aplicación de consola desarrollada en **C++** con **Visual Studio** para registrar exámenes de alumnos, almacenarlos en un archivo binario y consultar la mejor nota obtenida en un examen parcial.
 
 El proyecto fue realizado como práctica de **Programación Orientada a Objetos y manejo de archivos**.
 
@@ -26,16 +26,6 @@ El menú principal permite:
    - Muestra la calificación más alta y la fecha en la que fue obtenida.
    - Informa al usuario cuando no existen parciales que coincidan con la búsqueda.
 
-## Menú principal
-
-```text
------- MENU ------
-1 - Cargar Examen
-2 - Listar Examenes
-3 - Buscar mejor nota
-0 - Salir
-```
-
 ## Datos de un examen
 
 Cada examen contiene los siguientes datos:
@@ -60,63 +50,6 @@ Cada examen contiene los siguientes datos:
 | `Menu.h` / `Menu.cpp` | Implementan el menú base de la aplicación |
 | `MenuGestorExamenes.h` / `MenuGestorExamenes.cpp` | Conectan las opciones del menú con el gestor de exámenes |
 | `Examenes.dat` | Archivo binario que contiene los registros guardados |
-
-## Clases principales
-
-### `Fecha`
-
-Almacena los tres números que forman una fecha:
-
-- Día.
-- Mes.
-- Año.
-
-También permite cargarla, mostrarla y comparar dos fechas.
-
-### `Examen`
-
-Representa un examen mediante una fecha, un legajo, un código de materia, una calificación y un tipo de examen. Incluye constructores, getters y setters para administrar sus datos.
-
-### `ExamenArchivo`
-
-Se encarga de la persistencia de los registros:
-
-- `guardar()`: agrega un examen al final de `Examenes.dat`.
-- `leer()`: lee los exámenes almacenados.
-- `getCantRegistros()`: calcula la cantidad de registros existentes.
-
-### `ExamenManager`
-
-Administra las operaciones principales del sistema:
-
-- `crearExamen()`.
-- `listarTodos()`.
-- `mostrarMejorNota()`.
-
-### `MenuGestorExamenes`
-
-Muestra el menú principal y ejecuta la opción elegida por el usuario.
-
-## Persistencia de datos
-
-Los exámenes se almacenan en el archivo binario `Examenes.dat`. Cada nueva carga se agrega al final del archivo, por lo que los datos se conservan entre ejecuciones mientras el archivo permanezca en el directorio de trabajo del programa.
-
-> **Importante:** el nombre utilizado actualmente por el proyecto comienza con mayúscula: `Examenes.dat`.
-
-## Requisitos
-
-- Compilador compatible con C++.
-- Visual Studio con soporte para desarrollo de escritorio en C++, o un compilador equivalente.
-- Consola o terminal para interactuar con el menú.
-
-## Compilación y ejecución
-
-### Visual Studio
-
-1. Abrir `Project1.slnx`.
-2. Compilar la solución.
-3. Ejecutar el proyecto.
-4. Elegir una opción del menú ingresando su número.
 
 ## Estado actual del proyecto
 
