@@ -1,82 +1,58 @@
 # Gestor de Exámenes
 
-Aplicación de consola desarrollada en **C++** con **Visual Studio** para registrar exámenes de alumnos, almacenarlos en un archivo binario y consultar la mejor nota obtenida en un examen parcial.
+Aplicación de consola en **C++** para registrar exámenes de alumnos en un archivo binario, listarlos y consultar la mejor calificación obtenida en un parcial. Es una práctica de programación orientada a objetos y manejo de archivos.
 
-El proyecto fue realizado como práctica de **Programación Orientada a Objetos y manejo de archivos**.
+## Funciones disponibles
 
-## Funcionalidades
+Al iniciar, el menú ofrece estas opciones:
 
-El menú principal permite:
-
-1. **Cargar un examen**
-   - Solicita la fecha.
-   - Solicita el legajo del alumno.
-   - Solicita el código de materia.
-   - Solicita la calificación.
-   - Solicita el tipo de examen: parcial o final.
-   - Guarda el registro en el archivo binario `Examenes.dat`.
-
-2. **Listar exámenes**
-   - Lee todos los registros almacenados.
-   - Muestra la fecha, el legajo, el código de materia, la calificación y el tipo de examen.
-
-3. **Buscar la mejor nota**
-   - Solicita un legajo y un código de materia.
-   - Busca únicamente exámenes de tipo parcial.
-   - Muestra la calificación más alta y la fecha en la que fue obtenida.
-   - Informa al usuario cuando no existen parciales que coincidan con la búsqueda.
-
-## Datos de un examen
-
-Cada examen contiene los siguientes datos:
-
-| Campo | Tipo | Descripción |
-| --- | --- | --- |
-| Fecha | `Fecha` | Día, mes y año del examen |
-| Legajo | `int` | Número de legajo del alumno |
-| Código de materia | `int` | Identificador de la materia |
-| Calificación | `float` | Nota del examen, prevista entre 0 y 10 |
-| Tipo de examen | `char` | `P` para parcial o `F` para final |
-
-## Estructura del proyecto
-
-| Archivo | Responsabilidad |
+| Opción | Acción |
 | --- | --- |
-| `main.cpp` | Inicia la aplicación y ejecuta el menú principal |
-| `Fecha.h` / `Fecha.cpp` | Representan y administran el día, mes y año |
-| `Examen.h` / `Examen.cpp` | Definen la entidad examen y sus propiedades |
-| `ExamenArchivo.h` / `ExamenArchivo.cpp` | Guardan y leen registros del archivo binario |
-| `ExamenManager.h` / `ExamenManager.cpp` | Contienen la lógica para crear, listar y buscar exámenes |
-| `Menu.h` / `Menu.cpp` | Implementan el menú base de la aplicación |
-| `MenuGestorExamenes.h` / `MenuGestorExamenes.cpp` | Conectan las opciones del menú con el gestor de exámenes |
-| `Examenes.dat` | Archivo binario que contiene los registros guardados |
+| `1` | Cargar un examen y agregarlo a `Examenes.dat`. |
+| `2` | Listar los exámenes guardados en columnas: legajo, código de materia, fecha, tipo y calificación. |
+| `3` | Buscar la mejor nota **parcial** de un alumno en una materia, indicando legajo y código. También muestra la fecha correspondiente. |
+| `0` | Salir. |
 
-## Estado actual del proyecto
+Si no hay registros, el programa lo informa. Si la búsqueda no encuentra parciales para el legajo y la materia indicados, también muestra un aviso. Los exámenes finales no participan en la búsqueda de mejor nota.
 
-Las funciones principales del enunciado se encuentran implementadas: carga de exámenes, almacenamiento en archivo, listado de registros y búsqueda de la mejor nota parcial.
+## Datos y validaciones
 
-### Pendiente
+Cada registro de `Examen` contiene:
 
-El proyecto todavía se encuentra en desarrollo y faltan los siguientes ajustes:
+| Campo | Tipo en C++ | Entrada aceptada |
+| --- | --- | --- |
+| Fecha | `Fecha` (tres `int`) | Día, mes y año válidos; se consideran los años bisiestos. |
+| Legajo | `int` | Valor no negativo. |
+| Código de materia | `int` | Valor no negativo. |
+| Calificación | `float` | Entre 0 y 10, inclusive. |
+| Tipo de examen | `char` | `P`/`p` para parcial o `F`/`f` para final. |
 
-- Agregar validaciones para la fecha ingresada.
-- Validar que el legajo y el código de materia sean valores correctos.
-- Validar que la calificación esté entre **0 y 10**.
-- Validar que el tipo de examen sea solamente **P** o **F**.
-- Controlar entradas no numéricas y errores de lectura o escritura del archivo.
-- Impedir, de manera opcional, que se repita la combinación de legajo, código de materia y fecha.
-- Dar al listado de exámenes el formato tabular solicitado en el enunciado, con las columnas alineadas: **LEGAJO, IDMATERIA, FECHA, TIPO y CALIFICACIÓN**.
-- Implementar opcionalmente un método `ToString()`.
-- Adaptar, si se requiere cumplir literalmente la consigna, el método `leer()` para recibir un índice y devolver un único examen.
+Ante una fecha o un valor fuera de esos rangos, se vuelve a solicitar la entrada. En el listado, la fecha se presenta como `dd/mm/aaaa` mediante `Fecha::toString()`, y la calificación se muestra con dos decimales.
 
-Por el momento, la opción **Listar exámenes** muestra correctamente los datos, pero lo hace registro por registro y todavía no posee el formato final solicitado.
+## Organización del código
 
-## Enunciado resumido
+| Archivos | Responsabilidad |
+| --- | --- |
+| `main.cpp` | Crea y ejecuta el menú. |
+| `Fecha.h` y `Fecha.cpp` | Representan la fecha, comprueban días por mes y años bisiestos, y generan su texto. |
+| `Examen.h` y `Examen.cpp` | Representan un examen y muestran cada registro como una fila del listado. |
+| `ExamenArchivo.h` y `ExamenArchivo.cpp` | Agregan registros al archivo binario, leen los registros y cuentan cuántos hay. |
+| `ExamenManager.h` y `ExamenManager.cpp` | Gestionan la carga, el listado y la búsqueda de la mejor nota. |
+| `Menu.h` y `Menu.cpp` | Definen el menú reutilizable. |
+| `MenuGestorExamenes.h` y `MenuGestorExamenes.cpp` | Asocian cada opción con su operación. |
 
-La actividad propone desarrollar una aplicación de consola que utilice clases y archivos para:
+`Examenes.dat` se crea en el directorio de trabajo del programa cuando se guarda un examen. Los registros se agregan al final del archivo; al volver a ejecutar la aplicación desde ese mismo directorio, se pueden consultar los datos guardados.
 
-- Modelar un examen.
-- Aplicar encapsulamiento mediante getters y setters.
-- Guardar y recuperar información desde un archivo binario.
-- Separar la lógica de almacenamiento, administración y presentación.
-- Ofrecer un menú que permita cargar, listar y buscar exámenes.
+## Ejecutar
+
+El código utiliza `system("cls")` y `system("pause>nul")`, por lo que la interfaz está pensada para la consola de **Windows**. Para ejecutarlo desde Visual Studio, creá un proyecto de **Aplicación de consola de C++**, agregá los archivos `.h` y `.cpp` del repositorio, compilá y ejecutá `main.cpp`.
+
+## Estado y mejoras pendientes
+
+La carga, el guardado, el listado tabular y la búsqueda de la mejor nota parcial están implementados. Todavía quedan estos puntos por mejorar:
+
+- Manejar entradas no numéricas: actualmente pueden dejar `std::cin` en estado de error.
+- Verificar y comunicar los fallos de apertura, lectura o escritura del archivo. La carga muestra un mensaje de éxito aunque `guardar()` no haya podido abrirlo.
+- Ajustar la validación de legajo y código de materia si deben ser **mayores que cero**: la condición actual permite el cero.
+- Definir si deben admitirse exámenes repetidos para la misma combinación de legajo, materia y fecha.
+- Revisar los setters de `Examen` si se necesitan desde fuera de la clase: actualmente son privados.
