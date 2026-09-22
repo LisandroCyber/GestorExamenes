@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Fecha
 {
@@ -20,6 +21,10 @@ public:
     void cargar();
     void mostrar();
 
-    bool operator==(const Fecha& aux);
+    std::string toString();
 
+    bool operator==(const Fecha& aux);
+private:
+    bool esBisiesto(int anio);
+    bool esFechaValida();
 };

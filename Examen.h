@@ -12,6 +12,7 @@ public:
 	int getCodMateria();
 	float getCalifiacion();
 	char getTipoExamen();
+	void mostrarEnLista();
 
 private:
 	Fecha _fecha;
@@ -25,6 +26,7 @@ private:
 	void setCodMateria(int codMateria);
 	void setCalificacion(float calificacion);
 	void setTipoExamen(char tipoExamen);
+
 
 };
 

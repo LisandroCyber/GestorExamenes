@@ -15,7 +15,7 @@ void MenuGestorExamenes::run() {
     
     do {
         dibujarMenu();
-        std::cout << std::endl << "Opcion: ";
+        std::cout << std::endl << " Opcion: ";
         std::cin >> opcion;
 
         switch (opcion)
@@ -30,10 +30,10 @@ void MenuGestorExamenes::run() {
             manager.mostrarMejorNota();
             break;
         case 0:
-            std::cout << "Saliendo...";
+            std::cout << " Saliendo...";
             break;
         default:
-            std::cout << "Opcion invalida.";
+            std::cout << " Opcion invalida.";
         }
         
     } while (opcion != 0);
